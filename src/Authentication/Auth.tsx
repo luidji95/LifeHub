@@ -13,7 +13,8 @@ export default function Auth() {
 
   return (
     <div className="container">
-      <img className="logo" src="/your-logo.png" alt="LifeHub logo" />
+      <img className="logo" src="/lifehub-logo.png" alt="LifeHub logo" />
+
       <h1 className="title">Sign in to LifeHub</h1>
 
       <form onSubmit={handleSignIn}>

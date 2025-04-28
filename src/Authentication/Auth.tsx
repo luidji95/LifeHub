@@ -1,52 +1,26 @@
 import { useState } from "react";
-import "./auth.css";
+import Login from "./Login/login";
+import Registration from "./Registration/registration";
+import Dashboard from "../Dashboard/dashboard";
 
-export default function Auth() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function Authentication() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSignIn = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Login clicked", email, password);
-    // Ovde cu kasnije dodati supabase login
-  };
+  if (isLoggedIn) {
+    return <Dashboard />;
+  }
 
   return (
-    <div className="container">
-      <img className="logo" src="/lifehub-logo.png" alt="LifeHub logo" />
-
-      <h1 className="title">Sign in to LifeHub</h1>
-
-      <form onSubmit={handleSignIn}>
-        <input
-          className="input"
-          type="email"
-          placeholder="Username or email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
+    <>
+      {isLogin ? (
+        <Login
+          switchToRegister={() => setIsLogin(false)}
+          setIsLoggedIn={setIsLoggedIn} // <<<<<< OVO!
         />
-        <input
-          className="input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        <a href="#" className="forgot-password">
-          Forgot password?
-        </a>
-
-        <button type="submit" className="button">
-          Sign In
-        </button>
-      </form>
-
-      <div className="footer">
-        New to LifeHub? <a href="#">Create an account</a>
-      </div>
-    </div>
+      ) : (
+        <Registration switchToLogin={() => setIsLogin(true)} />
+      )}
+    </>
   );
 }

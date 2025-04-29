@@ -1,0 +1,104 @@
+.navbar {
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #d0d7de;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar-main {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px;
+  align-items: center;
+  /* background-color: #24292f; */
+}
+.hamburger-wrapper {
+  padding: 6px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-wrapper:hover {
+  background-color: #eaecef;
+}
+
+.hamburger-icon {
+  font-size: 20px;
+  color: #24292f;
+}
+
+.logo-navbar {
+  width: 48px;
+  height: 48px;
+}
+
+.username {
+  font-weight: bold;
+  color: #24292f;
+}
+.navbar-block-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.navbar-block-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  color: #888;
+  font-size: 18px;
+}
+
+.search-input {
+  padding: 6px 12px 6px 32px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  background-color: #d73a49;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.navbar-overview {
+  margin-left: 24px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-overview:hover {
+  cursor: pointer;
+}
+.overiview-link {
+  border-bottom: 2px solid #fd8c73;
+  padding-bottom: 6px;
+}

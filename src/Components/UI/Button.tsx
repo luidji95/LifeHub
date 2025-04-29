@@ -2,7 +2,7 @@ type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   type?: "button" | "submit";
-  variant?: "primary" | "link"; // dodajemo "link" da podržimo link-button stil
+  variant?: "primary" | "link";
   className?: string;
   disabled?: boolean;
 };

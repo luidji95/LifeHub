@@ -5,6 +5,9 @@ import { useValidation } from "../../hooks/useValidation";
 import { loginSchema } from "../../Validation/authSheme";
 import { supabase } from "../../supabaseClient";
 import "./login.css";
+import { useDispatch, UseDispatch } from "react-redux";
+import { saveUser } from "../../store/userSlice";
+import { AppDispatch } from "../../store/store";
 
 interface Props {
   switchToRegister: () => void;
@@ -17,6 +20,8 @@ export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
     password: "",
   });
 
+  const dispatch = useDispatch<AppDispatch>();
+
   const [serverError, setServerError] = useState<string | null>(null);
   const { validate, errors } = useValidation(loginSchema);
 
@@ -26,7 +31,7 @@ export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
     const isValid = validate(formData);
     if (!isValid) return;
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: formData.email,
       password: formData.password,
     });
@@ -35,6 +40,17 @@ export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
       setServerError(error.message);
     } else {
       setServerError(null);
+
+      if (data.user) {
+        dispatch(
+          saveUser({
+            id: data.user.id,
+            email: data.user.email || "",
+            username: data.user.user_metadata?.username || null,
+          })
+        );
+      }
+
       alert("Successfully logged in!");
       setIsLoggedIn(true);
     }

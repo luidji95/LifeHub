@@ -37,6 +37,11 @@ export default function Registration({ switchToLogin }: Props) {
     const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
+      options: {
+        data: {
+          username: formData.username,
+        },
+      },
     });
 
     if (error) {

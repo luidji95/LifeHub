@@ -53,22 +53,6 @@ export default function Navbar({ username }: Props) {
       <div className="navbar-overview">
         <div className="overiview-link">Overview</div>
       </div>
-
-      {/* <div className="navbar-left">
-        <div className="navbar-block-left">
-          <button className="hamburger">☰</button>
-          <img src="/lifehub-logo.png" alt="LifeHub" className="logo-navbar" />
-          <span className="username">{username}!</span>
-        </div>
-        <div className="overview-link">Overview</div>
-      </div>
-      <div className="navbar-right">
-        <input type="text" placeholder="Search..." className="search-input" />
-        <button className="logout-btn" onClick={handleLogout}>
-          <FiLogOut style={{ marginRight: "8px" }} />
-          Logout
-        </button>
-      </div> */}
     </nav>
   );
 }

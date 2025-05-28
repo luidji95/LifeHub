@@ -4,7 +4,7 @@ import Registration from "./Registration/registration";
 import Dashboard from "../Dashboard/dashboard";
 
 export default function Authentication() {
-  const [isLogin, setIsLogin] = useState(false); // false znači da je prikazana registracija
+  const [isLogin, setIsLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   if (isLoggedIn) {

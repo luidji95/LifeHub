@@ -1,0 +1,75 @@
+.personal-info-main {
+  background: white;
+  padding: 32px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+  margin-left: 200px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.avatar-wrapper {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d0d7de;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.avatar:hover {
+  opacity: 0.8;
+}
+
+.username-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #24292f;
+}
+
+.username-info span:last-child {
+  font-size: 14px;
+  color: #57606a;
+}
+
+.user-description {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #57606a;
+}
+
+.btn-edit button {
+  background-color: #2da44e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-edit button:hover {
+  background-color: #238636;
+}
+
+.user-links-related {
+  margin-top: 20px;
+  /* Ovde ćemo kasnije dodavati linkove: website, LinkedIn, GitHub itd. */
+}

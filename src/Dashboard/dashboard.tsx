@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import Navbar from "./Navigation/navigation";
+import PersonalInfo from "./PersonalInfo/personalInfo";
 
 export default function Dashboard() {
   const user = useSelector((state: RootState) => state.user);
@@ -9,7 +10,12 @@ export default function Dashboard() {
     <>
       <Navbar username={user.username || user.email} />
       <div>
-        <h1>Welcome to LifeHub Dashboard! 🚀</h1>
+        <PersonalInfo
+          username={user.username || ""}
+          firstName={user.firstName || ""}
+          lastName={user.lastName || ""}
+          avatarUrl={""}
+        />
       </div>
     </>
   );

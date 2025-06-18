@@ -14,7 +14,7 @@ export default function Dashboard() {
           username={user.username || ""}
           firstName={user.firstName || ""}
           lastName={user.lastName || ""}
-          avatarUrl={""}
+          avatarUrl={user.avatarUrl || ""}
         />
       </div>
     </>

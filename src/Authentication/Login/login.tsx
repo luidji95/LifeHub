@@ -47,6 +47,7 @@ export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
             id: data.user.id,
             email: data.user.email || "",
             username: data.user.user_metadata?.username || null,
+            avatarUrl: data.user.user_metadata?.avatarUrl || null,
           })
         );
       }

@@ -39,6 +39,8 @@ export default function Registration({ switchToLogin }: Props) {
       password: formData.password,
       options: {
         data: {
+          firstName: formData.firstName,
+          lastName: formData.secondName,
           username: formData.username,
         },
       },

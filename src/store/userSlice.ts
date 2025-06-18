@@ -6,6 +6,8 @@ interface UserState {
   username: string | null;
   isLoggedIn: boolean;
   avatarUrl: string | null;
+  firstName: string;
+  lastName: string;
 }
 
 const initialState: UserState = {
@@ -14,6 +16,8 @@ const initialState: UserState = {
   username: null,
   isLoggedIn: false,
   avatarUrl: null,
+  firstName: "",
+  lastName: "",
 };
 
 export const userSlice = createSlice({
@@ -27,6 +31,8 @@ export const userSlice = createSlice({
         email: string;
         username: string | null;
         avatarUrl: string | null;
+        firstName: string;
+        lastName: string;
       }>
     ) => {
       state.id = action.payload.id;
@@ -34,6 +40,8 @@ export const userSlice = createSlice({
       state.username = action.payload.username;
       state.isLoggedIn = true;
       state.avatarUrl = action.payload.avatarUrl;
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
     },
     logoutUser: (state) => {
       state.id = "";

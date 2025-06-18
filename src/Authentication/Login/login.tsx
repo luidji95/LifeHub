@@ -46,8 +46,10 @@ export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
           saveUser({
             id: data.user.id,
             email: data.user.email || "",
-            username: data.user.user_metadata?.username || null,
-            avatarUrl: data.user.user_metadata?.avatarUrl || null,
+            username: data.user.user_metadata?.username || "",
+            firstName: data.user.user_metadata?.firstName || "",
+            lastName: data.user.user_metadata?.lastName || "",
+            avatarUrl: data.user.user_metadata?.avatarUrl || "",
           })
         );
       }

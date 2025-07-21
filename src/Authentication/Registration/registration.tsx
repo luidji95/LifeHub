@@ -34,23 +34,25 @@ export default function Registration({ switchToLogin }: Props) {
       return;
     }
 
-    const { error } = await supabase.auth.signUp({
+    localStorage.setItem(
+      "registrationDraft",
+      JSON.stringify({
+        first_name: formData.firstName,
+        last_name: formData.secondName,
+        username: formData.username,
+      })
+    );
+
+    const { data, error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
-      options: {
-        data: {
-          firstName: formData.firstName,
-          lastName: formData.secondName,
-          username: formData.username,
-        },
-      },
     });
 
     if (error) {
       setServerError(error.message);
     } else {
       setServerError(null);
-      alert("Successfully registered! Please check your email.");
+      alert("Successfully registered! Please check your email to confirm.");
       switchToLogin();
     }
   };
@@ -62,7 +64,6 @@ export default function Registration({ switchToLogin }: Props) {
 
       <form onSubmit={handleRegister}>
         <Input
-          className="registration-input"
           type="text"
           placeholder="First Name"
           value={formData.firstName}
@@ -72,7 +73,6 @@ export default function Registration({ switchToLogin }: Props) {
           required
         />
         <Input
-          className="registration-input"
           type="text"
           placeholder="Last Name"
           value={formData.secondName}
@@ -82,7 +82,6 @@ export default function Registration({ switchToLogin }: Props) {
           required
         />
         <Input
-          className="registration-input"
           type="text"
           placeholder="Username"
           value={formData.username}
@@ -92,7 +91,6 @@ export default function Registration({ switchToLogin }: Props) {
           required
         />
         <Input
-          className="registration-input"
           type="email"
           placeholder="Email"
           value={formData.email}
@@ -100,7 +98,6 @@ export default function Registration({ switchToLogin }: Props) {
           required
         />
         <Input
-          className="registration-input"
           type="password"
           placeholder="Password"
           value={formData.password}
@@ -110,7 +107,6 @@ export default function Registration({ switchToLogin }: Props) {
           required
         />
         <Input
-          className="registration-input"
           type="password"
           placeholder="Confirm Password"
           value={formData.confirmPass}

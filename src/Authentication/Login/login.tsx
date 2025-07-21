@@ -5,58 +5,53 @@ import { useValidation } from "../../hooks/useValidation";
 import { loginSchema } from "../../Validation/authSheme";
 import { supabase } from "../../supabaseClient";
 import "./login.css";
-import { useDispatch, UseDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveUser } from "../../store/userSlice";
 import { AppDispatch } from "../../store/store";
 
 interface Props {
   switchToRegister: () => void;
-  setIsLoggedIn: (value: boolean) => void;
 }
 
-export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
+export default function Login({ switchToRegister }: Props) {
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch<AppDispatch>();
-
   const [serverError, setServerError] = useState<string | null>(null);
   const { validate, errors } = useValidation(loginSchema);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const isValid = validate(formData);
-    if (!isValid) return;
+    if (!validate(formData)) return;
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email: formData.email,
       password: formData.password,
     });
 
-    if (error) {
-      setServerError(error.message);
-    } else {
-      setServerError(null);
+    if (error) return setServerError(error.message);
+    if (!data.user)
+      return setServerError("User not found. Please confirm your email.");
 
-      if (data.user) {
-        dispatch(
-          saveUser({
-            id: data.user.id,
-            email: data.user.email || "",
-            username: data.user.user_metadata?.username || "",
-            firstName: data.user.user_metadata?.firstName || "",
-            lastName: data.user.user_metadata?.lastName || "",
-            avatarUrl: data.user.user_metadata?.avatarUrl || "",
-          })
-        );
-      }
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", data.user.id)
+      .maybeSingle();
 
-      alert("Successfully logged in!");
-      setIsLoggedIn(true);
-    }
+    if (profileError) return setServerError(profileError.message);
+    if (!profile) return setServerError("Profile not found. Try again later.");
+
+    dispatch(
+      saveUser({
+        id: profile.id,
+        email: profile.email,
+        username: profile.username,
+        firstName: profile.first_name,
+        lastName: profile.last_name,
+        avatarUrl: profile.avatar_url,
+        bio: profile.bio,
+      })
+    );
   };
 
   return (
@@ -81,11 +76,9 @@ export default function Login({ switchToRegister, setIsLoggedIn }: Props) {
           }
           required
         />
-
         {(errors || serverError) && (
           <p style={{ color: "red" }}>{errors || serverError}</p>
         )}
-
         <Button type="submit" variant="primary">
           Sign In
         </Button>

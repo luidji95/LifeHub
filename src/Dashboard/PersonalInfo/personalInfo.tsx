@@ -25,7 +25,10 @@ const PersonalInfo = ({ username, firstName, lastName, avatarUrl }: Props) => {
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !user?.id) return;
+    if (!file || !user || !user.id) {
+      setUploadError("Invalid file or user not found.");
+      return;
+    }
 
     setIsLoading(true);
     setUploadError(null);
@@ -50,10 +53,12 @@ const PersonalInfo = ({ username, firstName, lastName, avatarUrl }: Props) => {
 
       setLocalAvatar(publicUrl);
 
-      // Update user metadata in Supabase
-      await supabase.auth.updateUser({
-        data: { avatarUrl: publicUrl },
-      });
+      const { error: updateError } = await supabase
+        .from("profiles")
+        .update({ avatar_url: publicUrl })
+        .eq("id", user.id);
+
+      if (updateError) throw updateError;
     } catch (error) {
       setUploadError(
         error instanceof Error ? error.message : "Greška pri uploadu"

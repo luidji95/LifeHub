@@ -8,6 +8,7 @@ interface UserState {
   avatarUrl: string | null;
   firstName: string;
   lastName: string;
+  bio: string;
 }
 
 const initialState: UserState = {
@@ -18,6 +19,7 @@ const initialState: UserState = {
   avatarUrl: null,
   firstName: "",
   lastName: "",
+  bio: "",
 };
 
 export const userSlice = createSlice({
@@ -33,6 +35,7 @@ export const userSlice = createSlice({
         avatarUrl: string | null;
         firstName: string;
         lastName: string;
+        bio: string;
       }>
     ) => {
       state.id = action.payload.id;
@@ -42,6 +45,7 @@ export const userSlice = createSlice({
       state.avatarUrl = action.payload.avatarUrl;
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
+      state.bio = action.payload.bio;
     },
     logoutUser: (state) => {
       state.id = "";

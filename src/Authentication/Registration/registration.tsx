@@ -43,7 +43,7 @@ export default function Registration({ switchToLogin }: Props) {
       })
     );
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
     });
@@ -129,7 +129,7 @@ export default function Registration({ switchToLogin }: Props) {
         Already have an account?{" "}
         <Button
           type="button"
-          variant="secondary"
+          variant="link"
           onClick={switchToLogin}
           className="link-button"
         >

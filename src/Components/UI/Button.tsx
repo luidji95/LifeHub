@@ -11,7 +11,7 @@ const Button = ({
   children,
   onClick,
   type = "button",
-  variant = "primary",
+  variant = "primary", "secondary",
   className = "",
   disabled = false,
 }: ButtonProps) => {

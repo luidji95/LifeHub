@@ -1,6 +1,6 @@
 import "./navigation.css";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
 import { logoutUser } from "../../store/userSlice";
 import { supabase } from "../../supabaseClient";
 import { FiLogOut } from "react-icons/fi";
@@ -40,6 +40,8 @@ export default function Navbar({ username }: Props) {
               className="search-input"
               type="text"
               placeholder="Put [ / ] to search..."
+              value=""
+              onChange={() => {}}
             />
           </div>
 

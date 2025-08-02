@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 import { createContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "../supabaseClient";
 import { useDispatch } from "react-redux";
@@ -29,7 +28,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const init = async () => {
-      // Get session safely
       const {
         data: { session },
         error,
@@ -70,7 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setUser({ email, id: userId });
 
           // Check if profile already exists
-          const { data: profile, error } = await supabase
+          const { data: profile } = await supabase
             .from("profiles")
             .select("*")
             .eq("id", userId)

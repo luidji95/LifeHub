@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { useSyncProfile } from "./hooks/useSyncProfile";
 import Dashboard from "./Dashboard/dashboard";
 import Authentication from "./Authentication/Auth";
+import "./App.css";
 
 const AppContent = () => {
   const { user, loading } = useContext(AuthContext);
